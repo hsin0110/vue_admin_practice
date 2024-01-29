@@ -47,10 +47,11 @@
 import { User, Lock } from '@element-plus/icons-vue'
 import { reactive, ref } from 'vue'
 import useUserStore from '@/store/modules/user'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { ElNotification } from 'element-plus'
 import { getTime } from '@/utils/time.ts'
 let $router = useRouter()
+let $route = useRoute()
 const useStore = useUserStore()
 
 const loginForm = reactive({
@@ -71,7 +72,12 @@ const login = async () => {
 
   try {
     await useStore.userLogin(loginForm)
-    $router.push('./')
+    // 判斷路徑是否含有 query，若有就往該 query 跳轉，無則進首頁
+    let redirect: any = $route.query.redirect
+    $router.push({
+      path: redirect || '/',
+    })
+    // $router.push('./')
     ElNotification({
       type: 'success',
       message: '歡迎回來',

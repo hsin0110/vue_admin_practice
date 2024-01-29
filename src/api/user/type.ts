@@ -24,7 +24,8 @@ interface userInfo {
   roles: string[],
   buttons: string[],
   routes: string[],
-  token: string
+  token: string,
+  avatar: string
 }
 interface user { 
   checkUser: userInfo

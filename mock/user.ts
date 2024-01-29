@@ -9,7 +9,8 @@ function createUserList() {
       roles: ['平台管理員'],
       buttons: ['curser.detail'],
       routes: ['home'],
-      token: 'Admin Token'
+      token: 'Admin Token',
+      avatar: '../../../public/logo-meow.jpg'
     },
     {
       userId: 2,
@@ -58,9 +59,10 @@ export default [
 
   // 獲取用戶訊息
   {
-    url: '/api/user/info',
+    url: '/user/info',
     method: 'get',
     response: (request) => { 
+      console.log('request__', request)
       const token = request.headers.token;
       const checkUser = createUserList().find((item) => item.token === token)
       

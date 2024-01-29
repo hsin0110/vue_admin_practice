@@ -3,10 +3,10 @@
     <!-- 沒有子路由 -->
     <template v-if="!item.children">
       <el-menu-item :index="item.path" v-if="item.meta.isShow" @click="goRoute">
+        <el-icon>
+          <component :is="item.meta.icon"></component>
+        </el-icon>
         <template #title>
-          <el-icon>
-            <component :is="item.meta.icon"></component>
-          </el-icon>
           <span>{{ item.meta.title }}</span>
         </template>
       </el-menu-item>
@@ -16,11 +16,12 @@
       <el-menu-item
         v-if="item.children[0].meta.isShow"
         :index="item.children[0].path"
+        @click="goRoute"
       >
+        <el-icon>
+          <component :is="item.children[0].meta.icon"></component>
+        </el-icon>
         <template #title>
-          <el-icon>
-            <component :is="item.children[0].meta.icon"></component>
-          </el-icon>
           <span>{{ item.children[0].meta.title }}</span>
         </template>
       </el-menu-item>
@@ -43,6 +44,9 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
+// 獲取路由對象
+let $router = useRouter()
 // defineProps({
 //   menuList: {
 //     type: Array,
@@ -55,7 +59,10 @@ defineOptions({
 })
 
 const goRoute = (vc: any) => {
-  console.log('vc__', vc.index)
+  // console.log('vc__', vc.index)
+  // console.log('$router__', $router)
+  // 路由跳轉
+  $router.push(vc.index)
 }
 // console.log('menuList__', menuList)
 </script>

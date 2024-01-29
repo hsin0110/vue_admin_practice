@@ -11,6 +11,7 @@ import axios from 'axios'
 // })
 
 import { ElMessage } from 'element-plus'
+import useUserStore from '@/store/modules/user.ts'
 
 // step one：利用 axios 的create方法，創建 axios 實例(其他配置：url、timeout)
 const request = axios.create(
@@ -22,8 +23,13 @@ const request = axios.create(
 )
 // step two：實例添加請求與攔截器
 request.interceptors.request.use((config) => { 
-  console.log('config__', config)
+  // console.log('config__', config)
   // config.headers.token = '123'
+  let userStore = useUserStore()
+  console.log('userStore.token__', userStore.token)
+  if (userStore.token) { 
+    config.headers.token = userStore.token
+  }
   // config 配置對象 ，headers 經常給 server 攜帶公共參數
   // 返回配置對象
   return config
