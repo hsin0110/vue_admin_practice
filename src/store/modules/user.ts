@@ -1,6 +1,8 @@
 import { defineStore } from 'pinia'
-import { reqLogin, reqUserInfo } from '@/api/user'
-import type { loginForm, loginResponseData } from '@/api/user/type'
+import { reqLogin, reqUserInfo, reqLogout } from '@/api/user'
+// import { reqLogin, reqUserInfo } from '@/api/user'
+// import type { loginForm, loginResponseData } from '@/api/user/type'
+import type { loginFormData, loginResponseData, userResponseData } from '@/api/user/type'
 import type { UserState } from './types/type.ts'
 import { SET_TOKEN, GET_TOKEN, REMOVE_TOKEN } from '@/utils/token.ts'
 
@@ -18,7 +20,7 @@ const useUserStore = defineStore('User', {
   },
 
   actions: {
-    async userLogin(data: loginForm) {
+    async userLogin(data: loginFormData) {
       console.log('user data__', data)
       const result:loginResponseData = await reqLogin(data)
       console.log('result__', result)
@@ -37,7 +39,7 @@ const useUserStore = defineStore('User', {
     // 獲取用戶資訊
     async userInfo() { 
       console.log('userInfo')
-      let result = await reqUserInfo()
+      let result :userResponseData = await reqUserInfo()
       console.log('result__', result)
       // 如果獲取用戶資訊成功，儲存
       if (result.code === 200) {
@@ -49,7 +51,8 @@ const useUserStore = defineStore('User', {
       }
     },
     // logout
-    userLogout() { 
+    async userLogout() { 
+      let result = await reqLogout()
       this.token = ''
       this.userName = ''
       this.avatar = ''

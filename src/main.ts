@@ -16,9 +16,9 @@ app.use(GlobalComponent)
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 // 
-import mn from 'element-plus/dist/locale/mn.mjs'
+import en from 'element-plus/dist/locale/en.mjs'
 app.use(ElementPlus, {
-  locale: mn // element-plus 國際化配置
+  locale: en // element-plus 國際化配置
 })
 
 // console.log('import.meta.env__', import.meta.env)
