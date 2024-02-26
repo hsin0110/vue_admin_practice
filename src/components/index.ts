@@ -1,11 +1,13 @@
 // 引入項目中全部的全局組件
 import SvgIcon from './SvgIcon/index.vue'
 import Pagination from './Pagination/index.vue'
+import Category from './Category/index.vue'
 
 // 全局對象
 const allGlobalComponent = {
   SvgIcon,
   Pagination,
+  Category
 }
 console.log('allGlobalComponent__', allGlobalComponent)
 

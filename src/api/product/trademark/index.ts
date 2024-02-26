@@ -7,6 +7,7 @@ enum API {
   TRADEMARK_URL="/admin/product/baseTrademark/",
   ADD_TRADEMARK_URL="/admin/product/baseTrademark/save",
   UPDATE_TRADEMARK_URL="/admin/product/baseTrademark/update",
+  DELETE_URL="/admin/product/baseTrademark/remove",
 }
 
 // page: 獲取第幾頁數據 (默認第一頁)
@@ -20,6 +21,9 @@ export const reqAddOrUpdateTrademark = (data: TradeMark) => {
     return request.put<any, any>(API.UPDATE_TRADEMARK_URL, data)
   } else { 
     // 新增
-    return request.post<any, any>(ADD_TRADEMARK_URL, data)
+    return request.post<any, any>(API.ADD_TRADEMARK_URL, data)
   } 
 }
+
+// 刪除
+export const reqDeleteTrademark = (id: number) => request.delete<any, any>(API.DELETE_URL + id)
