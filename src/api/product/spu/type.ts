@@ -103,3 +103,31 @@ export interface HasSaleAttr {
 export interface HasSaleAttrResponseData extends ResponseData{ 
   data:HasSaleAttr[]
 }
+
+export interface Attr {
+  attrId: number|string, // 平台屬性的 ID
+  valueId: number|string, // 屬性值的ID
+}
+  
+export interface saleAttr {
+  saleAttrId: number|string, // 屬性的 ID
+  saleAttrValueId: number|string, // 屬性值的ID
+}
+  
+export interface SkuData { 
+  category3Id: string | number, // 三級分類ID
+  spuId: string | number, // 已有的 SPU ID
+  tmId: string | number, // SPU品牌ID
+  skuName: string, // sku 名字
+  price: string | number, // sku 價格
+  weight: string | number, // sku 重量
+  skuDesc: string, // sku的描述
+  skuAttrValueList?: Attr[], // 平台屬性的收集
+  skuSaleAttrValueList?:saleAttr[], // 銷售屬性
+  skuDefaultImg: string, // sku 圖片地址
+}
+
+// 獲取 SKU 數據接口的 ts 類型
+export interface SkuInfoData extends ResponseData { 
+  data: SkuData[]
+}
