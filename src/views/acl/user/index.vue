@@ -197,7 +197,7 @@ const save = async () => {
       type: 'success',
       message: userParams.id ? '編輯成功' : '添加成功',
     })
-    // getHasUser(userParams.id ? pageNo.value : 1) // 因有觸發 reload 所以可有可無
+    // getHasUser(userParams.id ? pageNo.value : 1) // 因有觸發 reload 去刷新，所以可有可無
     // 若更新的是當前帳號，讓瀏覽器自動刷新一次(router 會判斷是否放行)
     window.location.reload()
   } else {
